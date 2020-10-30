@@ -26,6 +26,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import GetChampionMastery from "../Component/GetChampionMastery";
 import GetChampionGameNumberAndWinRate from "../Component/GetChampionGameNumberAndWinRate";
+import ChampionSelector from "../Component/ChampionSelector";
+import styles from "../css/input.module.css";
+import Champion from "../Component/Champion";
 
 function Copyright() {
   return (
@@ -127,17 +130,18 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
 }));
-const api_key = "RGAPI-34405170-93d1-40e9-a542-6f067ec58cce";
+const api_key = "RGAPI-1f92482a-aec2-46d3-a7d6-680603097598";
 
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [inputValue, setInputValue] = useState("");
-  const [name, setName] = useState("");
+  const [name, setName] = useState("RNG mIxgzzz");
   const [scores, setScores] = useState(0);
   const [championMasteries, setChampionMasteries] = useState([]);
   const [counter, setCounter] = useState(0);
 
+  const [selectedChampion, setSelectChampion] = useState(-1);
   const [championInfoList, setChampionInfoList] = useState([]);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -208,21 +212,42 @@ export default function Dashboard() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <input className={classes.nameInput} onChange={handleInputChange} />
-        <button
-          onClick={() =>
-            GetChampionMastery({ name: name }, api_key).then((resp) => {
-              let scoreSum = 0;
-              resp.data.slice(0,18).map((champion) => {
-                let championInfoArray = [];
-                GetChampionGameNumberAndWinRate(
-                  {
-                    name: name,
-                    championId: champion.championId,
-                  },
-                  api_key
-                ).then((resp) => {
-                  //use championList => to solve replace state problem
+        <div className={styles.center}>
+          <input className={classes.nameInput} onChange={handleInputChange} />
+          <ChampionSelector
+            onChange={(event) => {
+              console.log(event.target.value);
+              setSelectChampion(event.target.value);
+            }}
+          />
+
+          <button
+            onClick={() =>
+              GetChampionMastery({ name: name }, api_key).then((resp) => {
+                let scoreSum = 0;
+                /*              resp.data.slice(0,18).map((champion) => {
+                                  let championInfoArray = [];
+                                  GetChampionGameNumberAndWinRate(
+                                    {
+                                      name: name,
+                                      championId: champion.championId,
+                                    },
+                                    api_key
+                                  ).then((resp) => {
+                                    //use championList => to solve replace state problem
+                                    setChampionInfoList((championInfoList) => [
+                                      ...championInfoList,
+                                      {
+                                        summonerId: name,
+                                        championId: champion.championId,
+                                        championLevel: champion.championLevel,
+                                        championPoints: champion.championPoints,
+                                        totalGameNumbers: resp.data.totalGames,
+                                      },
+                                    ]);
+                                    console.log(" after info" + championInfoList);
+                                  });*/
+                resp.data.map((champion) => {
                   setChampionInfoList((championInfoList) => [
                     ...championInfoList,
                     {
@@ -230,21 +255,62 @@ export default function Dashboard() {
                       championId: champion.championId,
                       championLevel: champion.championLevel,
                       championPoints: champion.championPoints,
-                      totalGameNumbers: resp.data.totalGames,
                     },
                   ]);
-                  console.log(" after info" + championInfoList);
                 });
                 resp.data.forEach((champion) => {
                   scoreSum += champion.championPoints;
                 });
                 setScores(scoreSum);
-              });
-            })
-          }
-        >
-          查询
-        </button>
+              })
+            }
+          >
+            查所有英雄情况
+          </button>
+          <button
+            onClick={() =>
+              GetChampionMastery({ name: name }, api_key).then((resp1) => {
+                let scoreSum = 0;
+                console.log(JSON.stringify(resp1.data));
+                GetChampionGameNumberAndWinRate(
+                  {
+                    name: name,
+                    championId: selectedChampion,
+                  },
+                  api_key
+                ).then((resp) => {
+                  resp1.data.map((champion, _, obj) => {
+                    if (champion.championId == selectedChampion) {
+                      console.log("same!!");
+                      console.log(JSON.stringify(champion));
+                      console.log(
+                        JSON.stringify({
+                          summonerId: name,
+                          championId: champion.championId,
+                          championLevel: champion.championLevel,
+                          championPoints: champion.championPoints,
+                          totalGameNumbers: resp.data.totalGames,
+                        })
+                      );
+                      setChampionInfoList((championInfoList) => [
+                        {
+                          summonerId: name,
+                          championId: champion.championId,
+                          championLevel: champion.championLevel,
+                          championPoints: champion.championPoints,
+                          totalGameNumbers: resp.data.totalGames,
+                        },
+                      ]);
+                    }
+                  });
+                  console.log(" after info" + championInfoList);
+                });
+              })
+            }
+          >
+            查特定英雄
+          </button>
+        </div>
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {/* Chart */}

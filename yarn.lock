@@ -1189,12 +1189,32 @@
   resolved "https://node.bit.dev/nexxtway.react-rainbow.libs.font-sizes/-/nexxtway.react-rainbow.libs.font-sizes-1.10.0.tgz#50041a4be3aa95880a537bf1322b52d22cc7d497"
   integrity sha1-UAQaS+OqlYgKU3vxMitS0izH1Jc=
 
+"@bit/nexxtway.react-rainbow.libs.margins@1.10.0":
+  version "1.10.0"
+  resolved "https://node.bit.dev/nexxtway.react-rainbow.libs.margins/-/nexxtway.react-rainbow.libs.margins-1.10.0.tgz#882df40a6ad75e89a3b4f0e894ac1d33df1032ee"
+  integrity sha1-iC30CmrXXomjtPDolKwdM98QMu4=
+
+"@bit/nexxtway.react-rainbow.libs.paddings@1.10.0":
+  version "1.10.0"
+  resolved "https://node.bit.dev/nexxtway.react-rainbow.libs.paddings/-/nexxtway.react-rainbow.libs.paddings-1.10.0.tgz#f155246f0c29b6548d1d766c7bc18751f19ed5bd"
+  integrity sha1-8VUkbwwptlSNHXZse8GHUfGe1b0=
+
 "@bit/nexxtway.react-rainbow.libs.shadows@1.10.0":
   version "1.10.0"
   resolved "https://node.bit.dev/nexxtway.react-rainbow.libs.shadows/-/nexxtway.react-rainbow.libs.shadows-1.10.0.tgz#ee7eb2cc4f1ba7cceec3dddc0c926638f34f8faf"
   integrity sha1-7n6yzE8bp8zuw93cDJJmOPNPj68=
   dependencies:
     "@bit/nexxtway.react-rainbow.libs.colors" "1.10.0"
+
+"@bit/nexxtway.react-rainbow.libs.unique-id@1.10.0":
+  version "1.10.0"
+  resolved "https://node.bit.dev/nexxtway.react-rainbow.libs.unique-id/-/nexxtway.react-rainbow.libs.unique-id-1.10.0.tgz#7142b061853d02ffc6bb83b4c2f40a3c86484fa8"
+  integrity sha1-cUKwYYU9Av/Gu4O0wvQKPIZIT6g=
+
+"@bit/nexxtway.react-rainbow.libs.with-redux-form@1.10.0":
+  version "1.10.0"
+  resolved "https://node.bit.dev/nexxtway.react-rainbow.libs.with-redux-form/-/nexxtway.react-rainbow.libs.with-redux-form-1.10.0.tgz#4e6979a4b8720b556fa1fe584bfc2c130ede8f17"
+  integrity sha1-Tml5pLhyC1Vvof5YS/wsEw7ejxc=
 
 "@bit/nexxtway.react-rainbow.menu-item@1.10.0", "@bit/nexxtway.react-rainbow.menu-item@^1.10.0":
   version "1.10.0"
@@ -1227,6 +1247,35 @@
   integrity sha1-qoCJJR4hmxJ3Kl3Jt8Sg/ddfaJs=
   dependencies:
     prop-types "^15.6.2"
+
+"@bit/nexxtway.react-rainbow.required-asterisk@1.10.0":
+  version "1.10.0"
+  resolved "https://node.bit.dev/nexxtway.react-rainbow.required-asterisk/-/nexxtway.react-rainbow.required-asterisk-1.10.0.tgz#4ec0c88ee22c4bd275414cb9cba43a60c8f4311a"
+  integrity sha1-TsDIjuIsS9J1QUy5y6Q6YMj0MRo=
+  dependencies:
+    "@bit/nexxtway.react-rainbow.libs.colors" "1.10.0"
+    "@bit/nexxtway.react-rainbow.render-if" "1.10.0"
+    prop-types "^15.6.2"
+    styled-components "^4.3.2"
+
+"@bit/nexxtway.react-rainbow.select@^1.10.0":
+  version "1.10.0"
+  resolved "https://node.bit.dev/nexxtway.react-rainbow.select/-/nexxtway.react-rainbow.select-1.10.0.tgz#e41c685b7b2a9cd6f7c6cdcf9e15d34a0ee427fc"
+  integrity sha1-5BxoW3sqnNb3xs3PnhXTSg7kJ/w=
+  dependencies:
+    "@bit/nexxtway.react-rainbow.libs.border-radius" "1.10.0"
+    "@bit/nexxtway.react-rainbow.libs.colors" "1.10.0"
+    "@bit/nexxtway.react-rainbow.libs.font-sizes" "1.10.0"
+    "@bit/nexxtway.react-rainbow.libs.margins" "1.10.0"
+    "@bit/nexxtway.react-rainbow.libs.paddings" "1.10.0"
+    "@bit/nexxtway.react-rainbow.libs.shadows" "1.10.0"
+    "@bit/nexxtway.react-rainbow.libs.unique-id" "1.10.0"
+    "@bit/nexxtway.react-rainbow.libs.with-redux-form" "1.10.0"
+    "@bit/nexxtway.react-rainbow.render-if" "1.10.0"
+    "@bit/nexxtway.react-rainbow.required-asterisk" "1.10.0"
+    "@bit/nexxtway.react-rainbow.types" "1.10.0"
+    prop-types "^15.6.2"
+    styled-components "^4.3.2"
 
 "@bit/nexxtway.react-rainbow.spinner@1.10.0":
   version "1.10.0"

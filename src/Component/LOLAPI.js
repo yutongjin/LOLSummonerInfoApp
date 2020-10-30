@@ -6,7 +6,7 @@ export default function LOLAPI() {
   const [inputValue, setInputValue] = useState("");
   const [playerInfo, setPlayerInfo] = useState([]);
   const [activePlayers, setActivePlayers] = useState([]);
-  const api_key = "RGAPI-34405170-93d1-40e9-a542-6f067ec58cce";
+  const api_key = "RGAPI-1f92482a-aec2-46d3-a7d6-680603097598";
   let area = "na1";
   useEffect(() => {
     console.log(inputValue);

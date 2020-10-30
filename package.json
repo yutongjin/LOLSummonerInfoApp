@@ -7,6 +7,7 @@
     "@bit/lekanmedia.shared-ui.list-builder": "^0.0.3",
     "@bit/nexxtway.react-rainbow.button-menu": "^1.10.0",
     "@bit/nexxtway.react-rainbow.menu-item": "^1.10.0",
+    "@bit/nexxtway.react-rainbow.select": "^1.10.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.31",
     "@fortawesome/free-solid-svg-icons": "^5.15.0",
     "@fortawesome/react-fontawesome": "^0.1.11",
