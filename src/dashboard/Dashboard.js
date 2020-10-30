@@ -27,6 +27,8 @@ import axios from "axios";
 import GetChampionMastery from "../Component/GetChampionMastery";
 import GetChampionGameNumberAndWinRate from "../Component/GetChampionGameNumberAndWinRate";
 import ChampionSelector from "../Component/ChampionSelector";
+import NameInput from "../Component/NameInput";
+
 import styles from "../css/input.module.css";
 import Champion from "../Component/Champion";
 
@@ -136,10 +138,9 @@ export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [inputValue, setInputValue] = useState("");
-  const [name, setName] = useState("RNG mIxgzzz");
+  const [name, setName] = useState("");
   const [scores, setScores] = useState(0);
   const [championMasteries, setChampionMasteries] = useState([]);
-  const [counter, setCounter] = useState(0);
 
   const [selectedChampion, setSelectChampion] = useState(-1);
   const [championInfoList, setChampionInfoList] = useState([]);
@@ -153,7 +154,6 @@ export default function Dashboard() {
   }, [championInfoList]);
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   let handleInputChange = (e) => {
-    setInputValue(e.target.value);
     setName(e.target.value);
   };
   return (
@@ -213,16 +213,15 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <div className={styles.center}>
-          <input className={classes.nameInput} onChange={handleInputChange} />
+          <NameInput onChange={handleInputChange} />
           <ChampionSelector
             onChange={(event) => {
-              console.log(event.target.value);
               setSelectChampion(event.target.value);
             }}
           />
 
           <button
-            onClick={() =>
+            onClick={() => {
               GetChampionMastery({ name: name }, api_key).then((resp) => {
                 let scoreSum = 0;
                 /*              resp.data.slice(0,18).map((champion) => {
@@ -247,23 +246,23 @@ export default function Dashboard() {
                                     ]);
                                     console.log(" after info" + championInfoList);
                                   });*/
-                resp.data.map((champion) => {
-                  setChampionInfoList((championInfoList) => [
-                    ...championInfoList,
-                    {
-                      summonerId: name,
-                      championId: champion.championId,
-                      championLevel: champion.championLevel,
-                      championPoints: champion.championPoints,
-                    },
-                  ]);
-                });
+                let array = [];
+                resp.data.map((champion) =>
+                  array.push({
+                    summonerId: name,
+                    championId: champion.championId,
+                    championLevel: champion.championLevel,
+                    championPoints: champion.championPoints,
+                    totalGameNumbers: 0,
+                  })
+                );
+                setChampionInfoList(array);
                 resp.data.forEach((champion) => {
                   scoreSum += champion.championPoints;
                 });
                 setScores(scoreSum);
-              })
-            }
+              });
+            }}
           >
             查所有英雄情况
           </button>
@@ -303,7 +302,6 @@ export default function Dashboard() {
                       ]);
                     }
                   });
-                  console.log(" after info" + championInfoList);
                 });
               })
             }
