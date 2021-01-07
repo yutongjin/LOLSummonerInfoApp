@@ -132,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
     height: 240,
   },
 }));
-const api_key = "RGAPI-1f92482a-aec2-46d3-a7d6-680603097598";
+const api_key = "RGAPI-9b103f9f-b4b2-4c01-82d9-b357d3420d62";
 
 export default function Dashboard() {
   const classes = useStyles();
